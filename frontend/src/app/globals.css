@@ -1,0 +1,169 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Light theme */
+    --background: 220 20% 97%;
+    --foreground: 224 30% 12%;
+    --card: 0 0% 100%;
+    --card-foreground: 224 30% 12%;
+    --border: 220 15% 88%;
+    --input: 220 15% 92%;
+    --ring: 250 84% 60%;
+    --primary: 250 84% 60%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 220 14% 93%;
+    --secondary-foreground: 224 30% 12%;
+    --muted: 220 14% 93%;
+    --muted-foreground: 220 15% 50%;
+    --accent: 250 70% 96%;
+    --accent-foreground: 250 84% 40%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+    --radius: 0.75rem;
+  }
+
+  .dark {
+    /* Dark theme */
+    --background: 224 30% 8%;
+    --foreground: 210 20% 96%;
+    --card: 224 25% 11%;
+    --card-foreground: 210 20% 96%;
+    --border: 224 20% 18%;
+    --input: 224 20% 14%;
+    --ring: 250 84% 65%;
+    --primary: 250 84% 65%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 224 20% 16%;
+    --secondary-foreground: 210 20% 80%;
+    --muted: 224 20% 14%;
+    --muted-foreground: 220 15% 55%;
+    --accent: 250 40% 18%;
+    --accent-foreground: 250 84% 75%;
+    --destructive: 0 70% 55%;
+    --destructive-foreground: 0 0% 100%;
+    --radius: 0.75rem;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+  
+  /* Scrollbar styling */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    @apply bg-transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    @apply bg-border rounded-full;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-muted-foreground/40;
+  }
+}
+
+@layer utilities {
+  /* Glass morphism */
+  .glass {
+    backdrop-filter: blur(16px) saturate(180%);
+    -webkit-backdrop-filter: blur(16px) saturate(180%);
+  }
+
+  /* Gradient text */
+  .gradient-text {
+    @apply bg-gradient-to-r from-violet-500 via-purple-500 to-indigo-500 bg-clip-text text-transparent;
+  }
+
+  /* Shimmer animation for skeletons */
+  .shimmer {
+    position: relative;
+    overflow: hidden;
+  }
+  .shimmer::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      rgba(255, 255, 255, 0.06) 50%,
+      transparent 100%
+    );
+    animation: shimmer 2s linear infinite;
+  }
+
+  /* Typing cursor blink */
+  .cursor-blink::after {
+    content: "▋";
+    animation: blink 1s step-end infinite;
+  }
+  @keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+  }
+
+  /* Confidence bar gradient */
+  .confidence-bar {
+    background: linear-gradient(
+      90deg,
+      hsl(var(--destructive)) 0%,
+      hsl(40 95% 55%) 50%,
+      hsl(140 70% 45%) 100%
+    );
+  }
+}
+
+/* Markdown prose styles */
+.prose-docqa {
+  @apply text-foreground leading-relaxed;
+}
+.prose-docqa h1,
+.prose-docqa h2,
+.prose-docqa h3 {
+  @apply font-display font-bold text-foreground mt-4 mb-2;
+}
+.prose-docqa p {
+  @apply mb-3 last:mb-0;
+}
+.prose-docqa ul,
+.prose-docqa ol {
+  @apply ml-4 mb-3 space-y-1;
+}
+.prose-docqa li {
+  @apply leading-relaxed;
+}
+.prose-docqa ul li {
+  @apply list-disc;
+}
+.prose-docqa ol li {
+  @apply list-decimal;
+}
+.prose-docqa code {
+  @apply text-sm bg-muted px-1.5 py-0.5 rounded font-mono;
+}
+.prose-docqa pre {
+  @apply bg-muted rounded-lg p-4 overflow-x-auto my-3;
+}
+.prose-docqa pre code {
+  @apply bg-transparent p-0;
+}
+.prose-docqa blockquote {
+  @apply border-l-4 border-primary/40 pl-4 italic text-muted-foreground my-3;
+}
+.prose-docqa strong {
+  @apply font-semibold text-foreground;
+}
+.prose-docqa a {
+  @apply text-primary underline underline-offset-2 hover:text-primary/80;
+}

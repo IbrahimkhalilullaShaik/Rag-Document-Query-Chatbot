@@ -1,0 +1,50 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+venv/
+.venv/
+env/
+.env
+!.env.example
+
+# Data
+backend/data/
+*.faiss
+*.pkl
+*.npy
+
+# Node
+node_modules/
+.next/
+out/
+.env.local
+!.env.example
+!.env.local.example
+frontend/.env.local
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+.DS_Store
+
+# Build
+dist/
+build/
+*.egg-info/
+
+# Logs
+*.log
+logs/
+
+# Testing
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Docker
+*.env.docker
